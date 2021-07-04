@@ -1,0 +1,13 @@
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.csproj.AssemblyReference.cache
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.AssemblyInfoInputs.cache
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.AssemblyInfo.cs
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.csproj.CoreCompileInputs.cache
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\bin\Debug\net5.0\IosTestFlight.Core.deps.json
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\bin\Debug\net5.0\IosTestFlight.Core.dll
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\bin\Debug\net5.0\ref\IosTestFlight.Core.dll
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\bin\Debug\net5.0\IosTestFlight.Core.pdb
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.dll
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\ref\IosTestFlight.Core.dll
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\obj\Debug\net5.0\IosTestFlight.Core.pdb
+F:\VS-Project\Console Project\IosTestFlight\IosTestFlight.Core\bin\Debug\net5.0\Config\UserConfig.txt

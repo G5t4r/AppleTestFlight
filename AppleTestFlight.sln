@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleTestFlight.Core", "AppleTestFlight.Core\AppleTestFlight.Core.csproj", "{02171B79-F35A-41E4-B847-925E997B845D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleTestFlight.Api", "AppleTestFlight.Api\AppleTestFlight.Api.csproj", "{03814ED9-265B-465E-A0A9-677F3DA5A291}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppleTestFlight.Monitor", "AppleTestFlight.Monitor\AppleTestFlight.Monitor.csproj", "{0D542049-100A-4A76-9325-4B53FEBB539B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02171B79-F35A-41E4-B847-925E997B845D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02171B79-F35A-41E4-B847-925E997B845D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02171B79-F35A-41E4-B847-925E997B845D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02171B79-F35A-41E4-B847-925E997B845D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03814ED9-265B-465E-A0A9-677F3DA5A291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03814ED9-265B-465E-A0A9-677F3DA5A291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03814ED9-265B-465E-A0A9-677F3DA5A291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03814ED9-265B-465E-A0A9-677F3DA5A291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D542049-100A-4A76-9325-4B53FEBB539B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D542049-100A-4A76-9325-4B53FEBB539B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D542049-100A-4A76-9325-4B53FEBB539B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D542049-100A-4A76-9325-4B53FEBB539B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1F7C2DBC-003A-4214-AAA3-4822FC9D626F}
+	EndGlobalSection
+EndGlobal
