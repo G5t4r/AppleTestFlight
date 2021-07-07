@@ -1,6 +1,4 @@
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\AppleTestFlight.Monitor.exe
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\AppleUserConfig.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\EmailConfig.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\AppleTestFlight.Monitor.deps.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\AppleTestFlight.Monitor.runtimeconfig.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\AppleTestFlight.Monitor.runtimeconfig.dev.json
@@ -41,3 +39,5 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\net5.0\ref\AppleTestFlight.Monitor.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\net5.0\AppleTestFlight.Monitor.pdb
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\net5.0\AppleTestFlight.Monitor.genruntimeconfig.cache
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\EmailInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\GlobalAdminUserInfo.ini

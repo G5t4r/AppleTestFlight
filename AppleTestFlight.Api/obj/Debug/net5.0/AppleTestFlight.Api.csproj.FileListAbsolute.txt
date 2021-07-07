@@ -1,5 +1,3 @@
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\Config\AppleUserConfig.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\Config\EmailConfig.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\appsettings.Development.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\appsettings.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\AppleTestFlight.Api.exe
@@ -42,3 +40,5 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Debug\net5
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Debug\net5.0\ref\AppleTestFlight.Api.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Debug\net5.0\AppleTestFlight.Api.pdb
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Debug\net5.0\AppleTestFlight.Api.genruntimeconfig.cache
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\Config\EmailInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Debug\net5.0\Config\GlobalAdminUserInfo.ini

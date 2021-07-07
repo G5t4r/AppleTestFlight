@@ -24,7 +24,7 @@ namespace AppleTestFlight.Core
         public static Dictionary<string, string> GetLocalEmailConfig()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            string path = AppDomain.CurrentDomain.BaseDirectory + "Config\\EmailConfig.ini";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Config\\EmailInfo.ini";
             using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
             {
                 while (!reader.EndOfStream)
@@ -51,6 +51,7 @@ namespace AppleTestFlight.Core
             var query = SearchQuery.DeliveredAfter(after);
             var allEmails = client.Inbox.Search(query);
             Dictionary<string, string> dic = new Dictionary<string, string>();
+            //拿最新两条，所以需要反转
             var newAllEmails = allEmails.Reverse();
             int index = 0;
             foreach (var item in newAllEmails)
@@ -66,14 +67,5 @@ namespace AppleTestFlight.Core
             }
             return dic;
         }
-
-        /// <summary>
-        /// 删除所有邮件
-        /// </summary>
-        /// <returns></returns>
-        //public static bool DeleteAllEmail()
-        //{
-
-        //}
     }
 }

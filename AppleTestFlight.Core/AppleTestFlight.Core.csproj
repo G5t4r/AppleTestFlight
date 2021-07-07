@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Config\EmailConfig.ini">
+    <None Update="Config\EmailInfo.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Config\AppleUserConfig.ini">
+    <None Update="Config\GlobalAdminUserInfo.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

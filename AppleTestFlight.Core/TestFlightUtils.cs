@@ -7,6 +7,8 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using AppleTestFlight.Core.Models;
+
 namespace AppleTestFlight.Core
 {
     /// <summary>
@@ -21,11 +23,11 @@ namespace AppleTestFlight.Core
 
 
         /// <summary>
-        /// 获取本地配置的管理员总账号的操作Cookie，只需要调用一次即可
+        /// 获取全局操作Cookie
         /// </summary>
-        public static void SignIn()
+        public static void GetGlobalOperationCookie()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "Config\\AppleUserConfig.ini";
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Config\\GlobalAdminUserInfo.ini";
             using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
             {
                 string[] line = reader.ReadLine().Split("----", StringSplitOptions.None);
@@ -42,13 +44,13 @@ namespace AppleTestFlight.Core
 
 
         /// <summary>
-        /// 获取所有已经邀请的用户（Email&ID）
+        /// 获取所有已经邀请用户的信息（email&id)
         /// </summary>
         /// <returns></returns>
         public static Dictionary<string, string> GetAllInvitedUserInfo()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            string url = "https://appstoreconnect.apple.com/iris/v1/betaTesters?filter[betaGroups]=" + BETAGROUPS;
+            string url = "https://appstoreconnect.apple.com/iris/v1/betaTesters?filter[betaGroups]=" + BETAGROUPS + "&limit=100";
             WebHeaderCollection headers = new WebHeaderCollection();
             headers.Add("Cookie", COOKIE);
             JToken result = JToken.Parse(HttpRequest.HttpRequestByGet(url, headers));
@@ -61,16 +63,70 @@ namespace AppleTestFlight.Core
 
 
         /// <summary>
+        /// 获取所有APP(name&id)
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetAllApps()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            string url = "https://appstoreconnect.apple.com/iris/v1/apps?include=appStoreVersions,appStoreVersionMetrics,betaReviewMetrics&limit=100&filter[removed]=false";
+            WebHeaderCollection headers = new WebHeaderCollection();
+            headers.Add("Cookie", COOKIE);
+            JToken result = JToken.Parse(HttpRequest.HttpRequestByGet(url, headers));
+            foreach (var item in result["data"])
+            {
+                dic.Add(item["id"].ToString(), item["attributes"]["name"].ToString());
+            }
+            return dic;
+        }
+
+
+        /// <summary>
         /// 添加邀请测试用户
         /// </summary>
         /// <param name="guid"></param>
-        public static void AddInviteUser(string email)
+        public static void AddInviteUsers(string[] emails)
         {
             string url = "https://appstoreconnect.apple.com/iris/v1/bulkBetaTesterAssignments";
-            string data = "{\"data\":{\"type\":\"bulkBetaTesterAssignments\",\"attributes\":{\"betaTesters\":[{\"id\":null,\"email\":\"" + email + "\",\"firstName\":\"沐风\",\"lastName\":\"熊\",\"assignmentResult\":null,\"errors\":[]}]},\"relationships\":{\"betaGroup\":{\"data\":{\"type\":\"betaGroups\",\"id\":\"" + BETAGROUPS + "\"}}}}}";
+            List<Betatester> betatesters = new List<Betatester>();
+
+            #region 批量添加用户
+            foreach (var email in emails)
+            {
+                betatesters.Add(new Betatester()
+                {
+                    email = email,
+                    firstName = "AppleTestFlight",
+                    lastName = "AppleTestFlight"
+                });
+            }
+            var bulkModels = new BulkBetaTesterAssignmentsModel()
+            {
+                data = new Data()
+                {
+                    type = "bulkBetaTesterAssignments",
+                    attributes = new Attributes()
+                    {
+                        betaTesters = betatesters.ToArray()
+                    },
+                    relationships = new Relationships()
+                    {
+                        betaGroup = new Betagroup()
+                        {
+                            data = new Betagroup.Data()
+                            {
+                                type = "betaGroups",
+                                id = BETAGROUPS
+                            }
+                        }
+                    }
+                }
+            };
+            #endregion
+
             var headers = new WebHeaderCollection();
             headers.Add("Cookie", COOKIE);
-            HttpRequest.HttpRequestByPost(url, data, "application/json", ref headers);
+            HttpRequest.HttpRequestByPost(url, JsonConvert.SerializeObject(bulkModels), "application/json", ref headers);
         }
 
 
@@ -78,16 +134,24 @@ namespace AppleTestFlight.Core
         /// 删除邀请测试用户
         /// </summary>
         /// <param name="guid"></param>
-        public static void DeleteInviteUser(string guid)
+        public static void DeleteInviteUsers(string[] guids)
         {
             string url = "https://appstoreconnect.apple.com/iris/v1/apps/" + APPID + "/relationships/betaTesters";
-            string data = "{\"data\":[{\"type\":\"betaTesters\",\"id\":\"" + guid + "\"}]}";
+            BulkDeleteBetaTesterModel bulk = new BulkDeleteBetaTesterModel();
+            List<BulkDeleteBetaTesterModel.Data> testers = new List<BulkDeleteBetaTesterModel.Data>();
+            foreach (var guid in guids)
+            {
+                testers.Add(new BulkDeleteBetaTesterModel.Data()
+                {
+                    type = "betaTesters",
+                    id = guid
+                });
+            }
+            bulk.data = testers.ToArray();
             var headers = new WebHeaderCollection();
             headers.Add("Cookie", COOKIE);
-            HttpRequest.HttpRequestByDelete(url, data, "application/json", headers);
+            HttpRequest.HttpRequestByDelete(url, JsonConvert.SerializeObject(bulk), "application/json", headers);
         }
-
-
 
         /// <summary>
         /// 获取指定时间以后的邮箱里的邀请链接

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AppleTestFlight.Core;
+using AppleTestFlight.Api.Models;
 namespace AppleTestFlight.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -18,29 +19,20 @@ namespace AppleTestFlight.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<object> GetSingleInviteUrl()
+        public async Task<TestFlightResult> GetSingleInviteUrl()
         {
             return await Task.Run(() =>
-             {
+            {
+                var data = _taskManager.GetSingleInviteUrl();
 
-                 var data = _taskManager.GetSingleInviteUrl();
+                if (data != null)
+                {
+                    return new TestFlightResult(1, "获取成功", data.Replace("https://", "itms-beta://"));
 
-                 if (data != null)
-                 {
-                     return new
-                     {
-                         code = 1,
-                         message = "获取成功",
-                         data = data.Replace("https://", "itms-beta://")
-                     };
-                 }
-                 return new
-                 {
-                     code = 0,
-                     message = "暂无库存",
-                     data = ""
-                 };
-             });
+                }
+
+                return new TestFlightResult(0, "暂无可用", null);
+            });
         }
     }
 }
