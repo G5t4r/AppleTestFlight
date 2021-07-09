@@ -11,10 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Config\AppidAndBetaGroups.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Config\EmailInfo.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Config\GlobalAdminUserInfo.ini">
+    <None Update="Config\GloablOperationTrustUserInfo.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

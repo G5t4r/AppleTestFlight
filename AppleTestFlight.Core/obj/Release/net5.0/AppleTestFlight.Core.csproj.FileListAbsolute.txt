@@ -1,5 +1,3 @@
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\AppleUserConfig.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\EmailConfig.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\AppleTestFlight.Core.deps.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\ref\AppleTestFlight.Core.dll
@@ -12,3 +10,5 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\n
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\net5.0\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\net5.0\ref\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\net5.0\AppleTestFlight.Core.pdb
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\EmailInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\GloablOperationTrustUserInfo.ini

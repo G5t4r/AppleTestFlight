@@ -31,6 +31,12 @@ namespace AppleTestFlight.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppleTestFlight.Api", Version = "v1" });
             });
+
+            //ÅäÖÃ¿çÓò
+            services.AddCors(options =>
+                options.AddPolicy("CustomCorsRules",
+                  p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
+            );
         }
 
 
@@ -45,6 +51,7 @@ namespace AppleTestFlight.Api
 
             app.UseRouting();
 
+            app.UseCors("CustomCorsRules");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

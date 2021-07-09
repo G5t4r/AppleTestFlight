@@ -8,46 +8,56 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AppleTestFlight.Core.Models;
-
+using AppleTestFlight.Core.Config;
 namespace AppleTestFlight.Core
 {
     /// <summary>
-    /// AppleTestFlight工具类
+    /// AppleTestFlight工厂
     /// </summary>
-    public class TestFlightUtils
+    public class TestFlightFactory
     {
-        private static string COOKIE = "";//全局操作授权需要的Cookie
-        private static string BETAGROUPS = "0f8002ef-b934-4ac3-862f-45db06e8d938";//测试团队组ID
-        private static string APPID = "1575052758";//APPID
+        private string COOKIE;
+        private readonly string BETAGROUPS;
+        private readonly string APPID;
 
+
+        public TestFlightFactory(string appid, string betagroups)
+        {
+            BETAGROUPS = betagroups;
+            APPID = appid;
+        }
 
 
         /// <summary>
-        /// 获取全局操作Cookie
+        /// 获取全局操作的Cookie（模拟登录）
         /// </summary>
-        public static void GetGlobalOperationCookie()
+        public void GetGlobalOperationCookie()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "Config\\GlobalAdminUserInfo.ini";
-            using (StreamReader reader = new StreamReader(path, Encoding.UTF8))
+            try
             {
-                string[] line = reader.ReadLine().Split("----", StringSplitOptions.None);
+                var trustUserInfo = AppleTestFlightConfig.GloablOperationTrustUserInfo();
                 string signUrl = "https://idmsa.apple.com/appleauth/auth/signin?isRememberMeEnabled=true";
-                string signData = "{\"accountName\":\"" + line[0] + "\",\"rememberMe\":true,\"password\":\"" + line[1] + "\"}";
+                string signData = "{\"accountName\":\"" + trustUserInfo[0] + "\",\"rememberMe\":true,\"password\":\"" + trustUserInfo[1] + "\"}";
                 var headers = new WebHeaderCollection();
                 headers.Add("X-Apple-Widget-Key", "e0b80c3bf78523bfe80974d320935bfa30add02e1bff88ec2166c6bd5a706c42");
-                headers.Add("Cookie", line[2]);
+                headers.Add("Cookie", trustUserInfo[2]);
                 HttpRequest.HttpRequestByPost(signUrl, signData, "application/json", ref headers);
                 var myacinfo = headers["Set-Cookie"].Split(';');
+                Console.WriteLine(headers["Set-Cookie"]);
                 COOKIE = myacinfo.First(o => o.Contains("myacinfo")).Replace("HttpOnly,", "");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("获取全局操作Cookie失败，登录信息有问题" + e.Message);
             }
         }
 
 
         /// <summary>
-        /// 获取所有已经邀请用户的信息（email&id)
+        /// 获取所有已经邀请用户的信息（邮箱&GUID)
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, string> GetAllInvitedUserInfo()
+        public Dictionary<string, string> GetAllInvitedUserInfo()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             string url = "https://appstoreconnect.apple.com/iris/v1/betaTesters?filter[betaGroups]=" + BETAGROUPS + "&limit=100";
@@ -63,10 +73,10 @@ namespace AppleTestFlight.Core
 
 
         /// <summary>
-        /// 获取所有APP(name&id)
+        /// 获取所有APP(名称&ID)
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, string> GetAllApps()
+        public Dictionary<string, string> GetAllApps()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             string url = "https://appstoreconnect.apple.com/iris/v1/apps?include=appStoreVersions,appStoreVersionMetrics,betaReviewMetrics&limit=100&filter[removed]=false";
@@ -75,7 +85,7 @@ namespace AppleTestFlight.Core
             JToken result = JToken.Parse(HttpRequest.HttpRequestByGet(url, headers));
             foreach (var item in result["data"])
             {
-                dic.Add(item["id"].ToString(), item["attributes"]["name"].ToString());
+                dic.Add(item["attributes"]["name"].ToString(), item["id"].ToString());
             }
             return dic;
         }
@@ -85,7 +95,7 @@ namespace AppleTestFlight.Core
         /// 添加邀请测试用户
         /// </summary>
         /// <param name="guid"></param>
-        public static void AddInviteUsers(string[] emails)
+        public void AddInviteUsers(string[] emails)
         {
             string url = "https://appstoreconnect.apple.com/iris/v1/bulkBetaTesterAssignments";
             List<Betatester> betatesters = new List<Betatester>();
@@ -134,7 +144,7 @@ namespace AppleTestFlight.Core
         /// 删除邀请测试用户
         /// </summary>
         /// <param name="guid"></param>
-        public static void DeleteInviteUsers(string[] guids)
+        public void DeleteInviteUsers(string[] guids)
         {
             string url = "https://appstoreconnect.apple.com/iris/v1/apps/" + APPID + "/relationships/betaTesters";
             BulkDeleteBetaTesterModel bulk = new BulkDeleteBetaTesterModel();
@@ -157,10 +167,11 @@ namespace AppleTestFlight.Core
         /// 获取指定时间以后的邮箱里的邀请链接
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetEmailInviteUrls(string account, string password, DateTime after)
+        public List<string> GetEmailInviteUrls(string account, string password, DateTime after)
         {
             List<string> urls = new List<string>();
-            var mails = EmailUtils.GetEmailContent(account, password, after);
+            using EmailFactory emailFactory = new EmailFactory(account, password, "btmail.ym191.com", 143);
+            var mails = emailFactory.GetEmailContentByTime(after);
             var invites = mails.Where(o => o.Key.Contains("has invited you to test"));
             string leftStr = "href='";
             string rightStr = "\\?ct";
@@ -177,7 +188,7 @@ namespace AppleTestFlight.Core
         /// 过滤无效的邀请链接
         /// </summary>
         /// <returns></returns>
-        public static List<string> FilterUselessUrl(List<string> urls)
+        public List<string> FilterUselessUrl(List<string> urls)
         {
             List<string> newUrls = new List<string>();
             foreach (var item in urls)
@@ -195,7 +206,7 @@ namespace AppleTestFlight.Core
         /// 检验该邀请链接是否有效
         /// </summary>
         /// <returns></returns>
-        public static bool CheckUrlIsUseful(string url)
+        public bool CheckUrlIsUseful(string url)
         {
             var result = HttpRequest.HttpRequestByGet(url, new WebHeaderCollection());
             if (result.Length > 3000)
@@ -209,7 +220,7 @@ namespace AppleTestFlight.Core
         /// <summary>
         /// 获取已经安装App的邀请用户的信息（已安装状态）
         /// </summary>
-        public static Dictionary<string, string> GetAlredyInstallUserInfo()
+        public Dictionary<string, string> GetAlredyInstallUserInfo()
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             string url = "https://appstoreconnect.apple.com/iris/v1/betaTesters?filter[betaGroups]=" + BETAGROUPS + "&sort=betaTesterMetrics.betaTesterState&limit=99&include=betaTesterMetrics";

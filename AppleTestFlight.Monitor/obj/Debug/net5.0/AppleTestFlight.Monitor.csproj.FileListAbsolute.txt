@@ -40,4 +40,5 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\net5.0\AppleTestFlight.Monitor.pdb
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\obj\Debug\net5.0\AppleTestFlight.Monitor.genruntimeconfig.cache
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\EmailInfo.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\GlobalAdminUserInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\GloablOperationTrustUserInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Monitor\bin\Debug\net5.0\Config\AppidAndBetaGroups.ini

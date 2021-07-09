@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #4D81FB;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .header {
+                margin-top: 8vw;
+                text-align: center;
+            }
+
+            .header-img {
+                width: 140px;
+                height: 140px;
+                border-radius: 25px;
+                animation: logo-animation 2s;
+            }
+
+            .header h1 {
+                color: white;
+            }
+
+            .content-box {
+                margin: 4vw auto;
+                width: 92vw;
+                background-color: white;
+                border-radius: 25px;
+                text-align: center;
+                padding: 10px 0 10px 0;
+            }
+
+            .content-box div:first-child {
+                background-color: #7c4bff;
+                width: 24vw;
+                height: 12vw;
+                border-radius: 0 25px 25px 0;
+                box-shadow: 2px 2px 0 0 gray;
+                text-align: center;
+            }
+
+            .content-box div:first-child h1 {
+                font-size: 4.267vw;
+                line-height: 12vw;
+            }
+
+            .content-box p {
+                font-size: 4.267vw;
+                font-weight: 700;
+                color: #333;
+            }
+
+            .button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 5vw auto;
+                width: 53.333vw;
+                height: 12vw;
+                border-radius: 12vw;
+                border: 1px solid black;
+                padding: auto;
+                cursor: pointer;
+            }
+
+            .button img {
+                border-radius: 25px;
+                width: 6vw;
+                height: 6vw;
+            }
+
+            .button h1 {
+                margin: 25px;
+                font-size: 4vw;
+            }
+
+            .help {
+                color: red;
+                font-size: 3.733vw;
+            }
+
+
+            @keyframes logo-animation {
+                from {
+                    transform: scale(0.8);
+                }
+
+                to {
+                    color: black;
+                    transform: scale(1.1);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="header">
+            <img class="header-img" src="./Images/LOGO.png">
+            <h1>AppleTestFlight</h1>
+        </header>
+        <div>
+            <div class="content-box">
+                <div>
+                    <h1>第一步</h1>
+                </div>
+                <p>首先安装【TestFlight】然后返回本页</p>
+                <p>如已安装请直接操作第二步</p>
+                <a class="button" href="https://apps.apple.com/app/id899247664">
+                    <img src="https://is3-ssl.mzstatic.com/image/thumb/Purple125/v4/ce/6d/bb/ce6dbb7a-db78-0417-cd42-ea46e54eb8ae/AppIcon-1x_U007emarketing-0-7-0-85-220.png/230x0w.webp" />
+                    <h1>安装 TestFlight</h1>
+                </a>
+            </div>
+            <div class="content-box">
+                <div>
+                    <h1>第二步</h1>
+                </div>
+                <p>点击下载 【Turing Swap】</p>
+                <p>请勿在意名字下载完成后打开即为Turing Swap</p>
+                <a class="button" onclick="Ack()">
+                    <img src="./Images/LOGO.png" />
+                    <h1>下载 TestFlight</h1>
+                </a>
+                <a class="help" href="./Images/help.jpg"> 如遇提示 "无法打开链接" 查看设置教程 >>></a>
+            </div>
+        </div>
+        <script>
+
+            //确认是否安装TestFlight
+            function Ack() {
+                Swal.fire({
+                    title: '提示',
+                    text: '请确认已安装TestFlight,若未进行第一步安装将无法内测应用',
+                    type: 'warning',
+                    confirmButtonText: '已安装',
+                    showCancelButton: true,
+                    cancelButtonText: '安装TestFlight'
+                }).then((results) => {
+                    if (results.isConfirmed) {
+                        //已安装
+                        GetInviteUrl();
+                    } else if (results.dismiss === Swal.DismissReason.cancel) {
+                        //未安装
+                        window.location = "https://itunes.apple.com/app/id899247664";
+                    }
+                })
+            }
+
+            //获取邀请链接
+            function GetInviteUrl() {
+                $.ajax({
+                    url: "http://api.jiuzhangjifs.com/api/AppleInvite/GetSingleInviteUrl",
+                    type: "get",
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.code == 1) {
+                            window.location.href = result.data;
+                        } else {
+                            Swal("安装链接正在紧急加载中...");
+                        }
+                    }
+                });
+            }
+        </script>
+    </body>
+
+</html>

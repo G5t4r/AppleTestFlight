@@ -5,7 +5,6 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\obj\Debug\net
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\obj\Debug\net5.0\AppleTestFlight.Test.csproj.CoreCompileInputs.cache
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Test.exe
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\Config\EmailInfo.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\Config\GlobalAdminUserInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Test.deps.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Test.runtimeconfig.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Test.runtimeconfig.dev.json
@@ -42,3 +41,5 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Api.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\AppleTestFlight.Api.pdb
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\Config\GloablOperationTrustUserInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Test\bin\Debug\net5.0\Config\AppidAndBetaGroups.ini
