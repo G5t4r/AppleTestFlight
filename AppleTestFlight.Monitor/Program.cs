@@ -10,19 +10,17 @@ namespace AppleTestFlight.Monitor
         {
             while (true)
             {
-                var appidAndBetaGroups = AppleTestFlightConfig.GetAppidAndBetaGroups();
-                TestFlightTaskManager taskManager = new TestFlightTaskManager(appidAndBetaGroups.Key, appidAndBetaGroups.Value);
                 try
                 {
+                    var appidAndBetaGroups = AppleTestFlightConfig.GetAppidAndBetaGroups();
                     Thread.Sleep(1000);
-                    if (taskManager.GetAllInviteUrlsInRedis().Count <= 0)
+                    if (RedisUtils.GetQueueAllToList(appidAndBetaGroups.Key).Count <= 0)
                     {
-                        Console.WriteLine("无库存了，重头再来");
+                        Console.WriteLine("库存已经用完，正在重新初始化...");
                         //延迟10秒初始化
                         Thread.Sleep(10000);
-                        Console.WriteLine("开始初始化中...");
+                        TestFlightTaskManager taskManager = new TestFlightTaskManager(appidAndBetaGroups.Key, appidAndBetaGroups.Value);
                         taskManager.Initialize();
-                        Console.WriteLine("初始化完成！");
                     }
                 }
                 catch (Exception ex)

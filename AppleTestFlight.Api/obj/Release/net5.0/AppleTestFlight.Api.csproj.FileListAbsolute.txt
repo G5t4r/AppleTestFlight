@@ -42,3 +42,4 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\ne
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\net5.0\AppleTestFlight.Api.genruntimeconfig.cache
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Release\net5.0\Config\EmailInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Release\net5.0\Config\GloablOperationTrustUserInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\bin\Release\net5.0\Config\AppidAndBetaGroups.ini

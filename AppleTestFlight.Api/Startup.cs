@@ -25,7 +25,7 @@ namespace AppleTestFlight.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //swagger
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

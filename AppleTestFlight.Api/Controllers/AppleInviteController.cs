@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AppleTestFlight.Core;
 using AppleTestFlight.Api.Models;
 using Microsoft.AspNetCore.Cors;
-
 namespace AppleTestFlight.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
@@ -15,18 +14,12 @@ namespace AppleTestFlight.Api.Controllers
     [EnableCors("CustomCorsRules")]
     public class AppleInviteController : ControllerBase
     {
-        private readonly TestFlightTaskManager _taskManager;
-        public AppleInviteController()
-        {
-            _taskManager = new TestFlightTaskManager("1575052758", "0f8002ef-b934-4ac3-862f-45db06e8d938");
-        }
-
         [HttpGet]
-        public async Task<TestFlightResult> GetSingleInviteUrl()
+        public async Task<TestFlightResult> GetSingleInviteUrl(string appid)
         {
             return await Task.Run(() =>
             {
-                var data = _taskManager.GetSingleInviteUrlInRedis();
+                var data = RedisUtils.DeQueue(appid);
 
                 if (data != null)
                 {

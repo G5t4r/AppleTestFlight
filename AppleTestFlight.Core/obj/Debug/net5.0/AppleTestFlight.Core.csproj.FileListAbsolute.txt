@@ -1,7 +1,11 @@
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\AppidAndBetaGroups.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\EmailInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\GloablOperationTrustUserInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\AppleTestFlight.Core.deps.json
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\ref\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\AppleTestFlight.Core.pdb
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.csproj.AssemblyReference.cache
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.GeneratedMSBuildEditorConfig.editorconfig
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.AssemblyInfoInputs.cache
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.AssemblyInfo.cs
@@ -9,6 +13,3 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\ref\AppleTestFlight.Core.dll
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Debug\net5.0\AppleTestFlight.Core.pdb
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\EmailInfo.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\GloablOperationTrustUserInfo.ini
-F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Debug\net5.0\Config\AppidAndBetaGroups.ini

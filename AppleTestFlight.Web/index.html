@@ -163,6 +163,7 @@
                     url: "http://api.jiuzhangjifs.com/api/AppleInvite/GetSingleInviteUrl",
                     type: "get",
                     dataType: "json",
+                    cache: false,
                     success: function (result) {
                         if (result.code == 1) {
                             window.location.href = result.data;

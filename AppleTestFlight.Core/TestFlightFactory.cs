@@ -19,12 +19,16 @@ namespace AppleTestFlight.Core
         private string COOKIE;
         private readonly string BETAGROUPS;
         private readonly string APPID;
+        private readonly string APPNAME;
 
 
         public TestFlightFactory(string appid, string betagroups)
         {
             BETAGROUPS = betagroups;
             APPID = appid;
+            GetGlobalOperationCookie();
+            APPNAME = GetAllApps()[appid];
+            Console.WriteLine("当前APP名称：  " + APPNAME);
         }
 
 
@@ -43,7 +47,6 @@ namespace AppleTestFlight.Core
                 headers.Add("Cookie", trustUserInfo[2]);
                 HttpRequest.HttpRequestByPost(signUrl, signData, "application/json", ref headers);
                 var myacinfo = headers["Set-Cookie"].Split(';');
-                Console.WriteLine(headers["Set-Cookie"]);
                 COOKIE = myacinfo.First(o => o.Contains("myacinfo")).Replace("HttpOnly,", "");
             }
             catch (Exception e)
@@ -73,7 +76,7 @@ namespace AppleTestFlight.Core
 
 
         /// <summary>
-        /// 获取所有APP(名称&ID)
+        /// 获取所有APP(ID&名称)
         /// </summary>
         /// <returns></returns>
         public Dictionary<string, string> GetAllApps()
@@ -85,7 +88,7 @@ namespace AppleTestFlight.Core
             JToken result = JToken.Parse(HttpRequest.HttpRequestByGet(url, headers));
             foreach (var item in result["data"])
             {
-                dic.Add(item["attributes"]["name"].ToString(), item["id"].ToString());
+                dic.Add(item["id"].ToString(), item["attributes"]["name"].ToString());
             }
             return dic;
         }
@@ -100,39 +103,20 @@ namespace AppleTestFlight.Core
             string url = "https://appstoreconnect.apple.com/iris/v1/bulkBetaTesterAssignments";
             List<Betatester> betatesters = new List<Betatester>();
 
-            #region 批量添加用户
+            //批量添加用户
             foreach (var email in emails)
             {
-                betatesters.Add(new Betatester()
-                {
-                    email = email,
-                    firstName = "AppleTestFlight",
-                    lastName = "AppleTestFlight"
-                });
+                betatesters.Add(new Betatester() { email = email, firstName = "AppleTestFlight", lastName = "AppleTestFlight" });
             }
             var bulkModels = new BulkBetaTesterAssignmentsModel()
             {
                 data = new Data()
                 {
                     type = "bulkBetaTesterAssignments",
-                    attributes = new Attributes()
-                    {
-                        betaTesters = betatesters.ToArray()
-                    },
-                    relationships = new Relationships()
-                    {
-                        betaGroup = new Betagroup()
-                        {
-                            data = new Betagroup.Data()
-                            {
-                                type = "betaGroups",
-                                id = BETAGROUPS
-                            }
-                        }
-                    }
+                    attributes = new Attributes() { betaTesters = betatesters.ToArray() },
+                    relationships = new Relationships() { betaGroup = new Betagroup() { data = new Betagroup.Data() { type = "betaGroups", id = BETAGROUPS } } }
                 }
             };
-            #endregion
 
             var headers = new WebHeaderCollection();
             headers.Add("Cookie", COOKIE);
@@ -164,23 +148,20 @@ namespace AppleTestFlight.Core
         }
 
         /// <summary>
-        /// 获取指定时间以后的邮箱里的邀请链接
+        /// 获取这个APP最新的一条邀请邮件内的链接（指定时间以后）
         /// </summary>
         /// <returns></returns>
-        public List<string> GetEmailInviteUrls(string account, string password, DateTime after)
+        public string GetEmailInviteUrls(string account, string password, DateTime after)
         {
-            List<string> urls = new List<string>();
             using EmailFactory emailFactory = new EmailFactory(account, password, "btmail.ym191.com", 143);
             var mails = emailFactory.GetEmailContentByTime(after);
-            var invites = mails.Where(o => o.Key.Contains("has invited you to test"));
+            //得到这个APP所有相关邀请链接的邮件
+            var invites = mails.Where(o => o.Key.Contains(APPNAME));
             string leftStr = "href='";
             string rightStr = "\\?ct";
-            foreach (var item in invites)
-            {
-                string url = Regex.Match(item.Value, $"(?<={leftStr})[\\s\\S]*(?={rightStr})").ToString();
-                urls.Add(url);
-            }
-            return urls;
+            //只拿最新的一个链接
+            string url = Regex.Match(invites.ToList()[0].Value, $"(?<={leftStr})[\\s\\S]*(?={rightStr})").ToString();
+            return url;
         }
 
 

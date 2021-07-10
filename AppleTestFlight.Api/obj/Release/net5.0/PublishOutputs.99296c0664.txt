@@ -1,3 +1,4 @@
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\net5.0\PubTmp\Out\Config\AppidAndBetaGroups.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\net5.0\PubTmp\Out\Config\EmailInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\net5.0\PubTmp\Out\Config\GloablOperationTrustUserInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Api\obj\Release\net5.0\PubTmp\Out\AppleTestFlight.Api.exe

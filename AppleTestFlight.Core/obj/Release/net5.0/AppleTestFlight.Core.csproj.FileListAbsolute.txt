@@ -12,3 +12,4 @@ F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\n
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\obj\Release\net5.0\AppleTestFlight.Core.pdb
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\EmailInfo.ini
 F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\GloablOperationTrustUserInfo.ini
+F:\VS-Project\Console Project\AppleTestFlight\AppleTestFlight.Core\bin\Release\net5.0\Config\AppidAndBetaGroups.ini
