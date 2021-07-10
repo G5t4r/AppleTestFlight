@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.IO;
-using System.Text;
+﻿using AppleTestFlight.Core.Config;
+using AppleTestFlight.Core.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using AppleTestFlight.Core.Models;
-using AppleTestFlight.Core.Config;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text.RegularExpressions;
 namespace AppleTestFlight.Core
 {
     /// <summary>

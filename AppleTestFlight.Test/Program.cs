@@ -1,10 +1,4 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using AppleTestFlight.Core.Models;
-using AppleTestFlight.Core;
-using System.Linq;
-using StackExchange.Redis;
+﻿using StackExchange.Redis;
 namespace AppleTestFlight.Test
 {
     class Program

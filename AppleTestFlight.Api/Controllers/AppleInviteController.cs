@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AppleTestFlight.Api.Models;
 using AppleTestFlight.Core;
-using AppleTestFlight.Api.Models;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 namespace AppleTestFlight.Api.Controllers
 {
     [Route("api/[controller]/[action]")]

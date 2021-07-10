@@ -1,7 +1,7 @@
-﻿using System;
-using AppleTestFlight.Core;
-using System.Threading;
+﻿using AppleTestFlight.Core;
 using AppleTestFlight.Core.Config;
+using System;
+using System.Threading;
 namespace AppleTestFlight.Monitor
 {
     class Program

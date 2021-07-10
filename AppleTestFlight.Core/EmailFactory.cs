@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MailKit;
-using MailKit.Security;
+﻿using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
-using System.IO;
-using System.Text.RegularExpressions;
+using MailKit.Security;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 namespace AppleTestFlight.Core
 {
     /// <summary>
@@ -37,7 +33,7 @@ namespace AppleTestFlight.Core
             var query = SearchQuery.DeliveredAfter(after);
             var allEmails = _imapClient.Inbox.Search(query);
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            //拿最新所以需要反转
+            //拿最新从上刀下排序的邮件，所以需要反转
             var newAllEmails = allEmails.Reverse();
             foreach (var item in newAllEmails)
             {

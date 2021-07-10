@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AppleTestFlight.Core.Config;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using StackExchange.Redis;
 using System.Threading;
-using AppleTestFlight.Core.Config;
 namespace AppleTestFlight.Core
 {
     /// <summary>
