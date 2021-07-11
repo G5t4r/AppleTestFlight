@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -46,5 +47,27 @@ namespace AppleTestFlight.Core
         {
             return _multiplexer.GetDatabase(0).ListRange(key).ToList();
         }
+
+        /// <summary>
+        /// 插入一个String类型的键
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="expiry"></param>
+        public static void InsertString(string key, string value, double expiry)
+        {
+            _multiplexer.GetDatabase(1).StringSet(key, value, TimeSpan.FromSeconds(expiry));
+        }
+
+        /// <summary>
+        /// 判断键是否存在
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static bool KeyExits(string key)
+        {
+            return _multiplexer.GetDatabase(1).KeyExists(key);
+        }
+
     }
 }

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using AppleTestFlight.Api.Filters;
+using Microsoft.AspNetCore.Http;
 
 namespace AppleTestFlight.Api
 {
@@ -19,8 +21,14 @@ namespace AppleTestFlight.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //限制流量过滤器
+            services.AddControllers(o =>
+            {
+                o.Filters.Add(new LimitFilter(Configuration.GetSection("AppleTestFlightConfig:LimitAccessorTime").Value));
+            });
             //swagger
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AppleTestFlight.Api", Version = "v1" });
